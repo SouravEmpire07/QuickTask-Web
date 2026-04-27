@@ -1,0 +1,4 @@
+.flenv/
+__pycache__/
+instance/
+*.pyc
