@@ -2,8 +2,9 @@
 
 A simple, lightweight, and dynamic Todo application built using the **Flask** web framework. This project was created to explore full-stack development with Python, database management with SQLAlchemy, and dynamic templating with Jinja2.
 
-## ✨ Features
-- **Create Tasks:** Add new todos with a title and description.
+## ✨ Features (Version 2.0 Updates)
+- **Full CRUD Operations:** You can now Create, Read, **Update**, and **Delete** your tasks!
+- **Template Inheritance:** The frontend has been refactored to use a `Base.html` layout, making the code much cleaner and easier to manage.
 - **View Tasks:** All tasks are displayed in a clean, responsive table.
 - **Real-time Updates:** Uses a local SQLite database to persist your data.
 - **Responsive Design:** Styled with **Bootstrap 5** for a modern look.
@@ -51,9 +52,11 @@ A simple, lightweight, and dynamic Todo application built using the **Flask** we
 ## 📁 Project Structure
 ```text
 .
-├── app.py              # Main Flask application logic
+├── app.py              # Main Flask application logic (Routes & DB Models)
 ├── templates/
-│   └── index.html      # Main UI template (Jinja2)
+│   ├── Base.html       # Master layout template (Jinja2)
+│   ├── index.html      # Homepage and Todo list view
+│   └── update.html     # Form page for updating existing Todos
 ├── instance/
 │   └── my_todo.db      # SQLite database file (created after init)
 ├── requirements.txt    # List of project dependencies
