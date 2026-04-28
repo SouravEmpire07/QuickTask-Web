@@ -4,11 +4,10 @@
 <center>
     <h1 class="my-3">I am Sourav and this is my first flask project</h1>
 </center>
-<div class="container my-4">
-    <h2>
-        <center>Add a todo</center>
-    </h2>
-    <form action="/" method="post">
+<div class="container my-5">
+    <div class="custom-card">
+        <h2 class="text-center mb-4">Add a new task</h2>
+        <form action="/" method="post">
         <div class="mb-3">
             <label for="title" class="form-label">Task To Do </label>
             <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp">
@@ -18,26 +17,40 @@
             <label for="desc" class="form-label">task description</label>
             <input type="text" class="form-control" name="desc" id="desc">
         </div>
+        <div class="mb-3">
+            <label for="type" class="form-label">Type</label>
+            <select class="form-select" name="type" id="type">
+                <option value="General" selected>General</option>
+                <option value="Music">Music</option>
+                <option value="study">study</option>
+                <option value="finance">finance</option>
+                <option value="work">work</option>
+                <option value="watchlist">watchlist</option>
+                <option value="shopping">shopping</option>
+            </select>
+        </div>
         <center>
             <button type="submit" class="btn btn-primary">Submit</button>
         </center>
     </form>
+    </div>
 </div>
-<div class="container my-4">
-    <h2>
-        <center>My todo lists</center>
-    </h2>
+<div class="container my-5">
+    <div class="custom-card">
+        <h2 class="text-center mb-4">My Tasks</h2>
     {% if allTodo|length == 0 %}
     <div class="alert alert-dark" role="alert">
-        No Todo found. Add your first todo now!
+        <i class="bi bi-info-circle me-2"></i> No Todo found. Add your first task above!
     </div>
     {% else %}
-    <table class="table">
+    <div class="table-responsive">
+        <table class="table table-hover mt-3">
         <thead>
             <tr>
                 <th scope="col">Sno:</th>
                 <th scope="col">Title</th>
                 <th scope="col">Desc</th>
+                <th scope="col">Type</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -48,16 +61,19 @@
                 <th scope="row">{{loop.index}}</th>
                 <td>{{todo.title}}</td>
                 <td>{{todo.desc}}</td>
+                <td>{{todo.type}}</td>
                 <td>{{todo.date_created}}</td>
                 <td>
-                    <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">Delete</a>
-                    <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">Update</a>
+                    <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-light btn-sm mx-1">Delete</a>
+                    <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-light btn-sm mx-1">Update</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
-    </table>
+        </table>
+    </div>
     {% endif %}
+    </div>
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->

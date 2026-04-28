@@ -4,25 +4,37 @@
 <center>
     <h1 class="my-3">Update Todo</h1>
 </center>
-<div class="container my-4">
-    <h2>
-        <center>Update your todo</center>
-    </h2>
-    <form action="/update/{{todo.sno}}" method="post">
-        <div class="mb-3">
-            <label for="title" class="form-label">Task To Do </label>
-            <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp"
-                value="{{todo.title}}">
-            <div id="emailHelp" class="form-text">lets do it</div>
-        </div>
-        <div class="mb-3">
-            <label for="desc" class="form-label">task description</label>
-            <input type="text" class="form-control" name="desc" id="desc" value="{{todo.desc}}">
-        </div>
-        <center>
-            <button type="submit" class="btn btn-primary">Update</button>
-        </center>
-    </form>
+<div class="container my-5">
+    <div class="custom-card">
+        <h2 class="text-center mb-4">Update Task</h2>
+        <form action="/update/{{todo.sno}}" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Task To Do </label>
+                <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp"
+                    value="{{todo.title}}">
+                <div id="emailHelp" class="form-text">lets do it</div>
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">task description</label>
+                <input type="text" class="form-control" name="desc" id="desc" value="{{todo.desc}}">
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <select class="form-select" name="type" id="type">
+                    <option value="General" {% if todo.type == 'General' %}selected{% endif %}>General</option>
+                    <option value="Music" {% if todo.type == 'Music' %}selected{% endif %}>Music</option>
+                    <option value="study" {% if todo.type == 'study' %}selected{% endif %}>study</option>
+                    <option value="finance" {% if todo.type == 'finance' %}selected{% endif %}>finance</option>
+                    <option value="work" {% if todo.type == 'work' %}selected{% endif %}>work</option>
+                    <option value="watchlist" {% if todo.type == 'watchlist' %}selected{% endif %}>watchlist</option>
+                    <option value="shopping" {% if todo.type == 'shopping' %}selected{% endif %}>shopping</option>
+                </select>
+            </div>
+            <center>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </center>
+        </form>
+    </div>
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->

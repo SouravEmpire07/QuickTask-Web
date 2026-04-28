@@ -12,26 +12,29 @@ class Todo(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     desc = db.Column(db.String(500), nullable=False)
+    type = db.Column(db.String(50), nullable=False, default='General')
     date_created = db.Column(db.DateTime, default=datetime.now)
-    # complition_time = db.Column(db.DateTime, default=datetime.now)
 
     def __repr__(self) -> str:
         return f"<Todo {self.sno} --> {self.title}"
 
 @app.route("/" , methods = ['GET','POST'])
 def hello_sourav_welcome_to_flask():
+    filter_type = request.args.get('filter')
+    
     if request.method == "POST":
         title = request.form['title']
         desc = request.form['desc']
-        todo = Todo(title=title, desc=desc)
+        todo_type = request.form.get('type', 'General')
+        todo = Todo(title=title, desc=desc, type=todo_type)
         db.session.add(todo)
         db.session.commit()
 
-    # return "<p>Hello, Sourav, Welcome to Flask!</p>"
-    # todo = Todo(title="First Todo", desc="Start learning flask and fastAPI")
-    # db.session.add(todo)
-    # db.session.commit()
-    allTodo = Todo.query.all()
+    if filter_type:
+        allTodo = Todo.query.filter_by(type=filter_type).all()
+    else:
+        allTodo = Todo.query.all()
+        
     return render_template("index.html", allTodo = allTodo)
 
 @app.route("/show")
@@ -45,9 +48,11 @@ def update(sno):
     if request.method == "POST":
         title = request.form['title']
         desc = request.form['desc']
+        todo_type = request.form.get('type', 'General')
         todo = Todo.query.filter_by(sno=sno).first()
         todo.title = title
         todo.desc = desc
+        todo.type = todo_type
         db.session.add(todo)
         db.session.commit() 
         return redirect("/")
