@@ -12,7 +12,7 @@ A simple, lightweight, and dynamic Todo application built using the **Flask** we
 ## 🛠️ Tech Stack
 - **Backend:** Python, Flask
 - **Database:** SQLite, Flask-SQLAlchemy
-- **Frontend:** HTML5, Jinja2, Bootstrap 5
+- **Frontend:** HTML5, Jinja2, Bootstrap 5, CSS
 - **Environment:** Python Virtual Environment (venv)
 
 ## 🚀 How to Run Locally
